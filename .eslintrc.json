@@ -9,6 +9,12 @@
     "standard",
     "plugin:cypress/recommended"
   ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"

@@ -23,8 +23,9 @@
     "start:react": "cross-env BROWSER=none react-scripts start",
     "start": "start-server-and-test start:react http://127.0.0.1:3000 \"electron ./\"",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "echo \"Hello world\"",
     "eject": "react-scripts eject",
+    "lint": "eslint \"**/*.{ts,tsx,js}\"",
     "test:integration:dev": "start-server-and-test start:react http://127.0.0.1:3000 \"cypress open ./\"",
     "test:integration": "npm run build && cypress run --config video=false -b notebook --headed -e NODE_ENV=production"
   },
