@@ -1,0 +1,5 @@
+{
+  "chromeWebSecurity": false,
+  "testFiles": "**/*.spec.{js,jsx}",
+  "integrationFolder": "./cypress/integration"
+}
