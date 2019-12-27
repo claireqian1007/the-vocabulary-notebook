@@ -1,5 +1,6 @@
-const { app, BrowserWindow } = require('electron')
+const { app } = require('electron')
 const path = require('path')
+const createMainBrowserWindow = require('./main-browser-window')
 
 let mainWindow = null
 
@@ -35,17 +36,15 @@ const createWindow = async () => {
     await installExtensions()
   }
 
-  mainWindow = new BrowserWindow({
-    show: false,
-    width: 1024,
-    height: 728,
-    webPreferences: {
-      nodeIntegration: true
-    }
+  mainWindow = createMainBrowserWindow({
+    show: false
   })
 
-  // 'http://127.0.0.1:3000'
-  mainWindow.loadURL(`file://${path.join(__dirname, '../build/index.html')}`)
+  if (process.env.NODE_ENV === 'production') {
+    mainWindow.loadURL(`file://${path.join(__dirname, '../build/index.html')}`)
+  } else {
+    mainWindow.loadURL('http://127.0.0.1:3000')
+  }
 
   mainWindow.webContents.on('did-finish-load', () => {
     if (!mainWindow) {
@@ -57,10 +56,6 @@ const createWindow = async () => {
       mainWindow.show()
       mainWindow.focus()
     }
-  })
-
-  mainWindow.on('closed', () => {
-    mainWindow = null
   })
 }
 
