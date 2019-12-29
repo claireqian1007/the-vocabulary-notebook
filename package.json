@@ -5,29 +5,21 @@
   "homepage": "./",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
     "electron": "^7.1.7",
     "lodash": "^4.17.15",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0",
-    "typescript": "~3.7.2"
+    "react-dom": "^16.12.0"
   },
   "scripts": {
     "start:react": "cross-env BROWSER=none react-scripts start",
     "start": "start-server-and-test start:react http://127.0.0.1:3000 \"electron ./\"",
     "build": "react-scripts build",
-    "test": "echo \"Hello world\"",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint \"**/*.{ts,tsx,js}\"",
     "test:integration:dev": "start-server-and-test start:react http://127.0.0.1:3000 \"cypress open ./\"",
-    "test:integration": "npm run build && cypress run --config video=false -b notebook --headed -e NODE_ENV=production"
+    "test:integration": "npm run build && cypress run --config video=false -b notebook --headed -e NODE_ENV=production",
+    "test:coverage": "cross-env CI=true npm run test -- --coverage && jest-coverage-ratchet"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,12 +37,20 @@
     ]
   },
   "devDependencies": {
+    "@types/enzyme": "^3.10.4",
+    "@types/jest": "^24.0.25",
+    "@types/node": "^13.1.1",
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
     "@typescript-eslint/eslint-plugin": "^2.13.0",
     "@typescript-eslint/parser": "^2.13.0",
     "cross-env": "^6.0.3",
     "cypress": "^3.8.1",
     "electron-debug": "^3.0.1",
     "electron-devtools-installer": "^2.2.4",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.4.3",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-cypress": "^2.8.1",
@@ -59,6 +59,41 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
-    "start-server-and-test": "^1.10.6"
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "jest-coverage-ratchet": "^0.2.3",
+    "jest-plugin-unhandled-promise": "^2.9.0",
+    "lint-staged": "^9.5.0",
+    "react-scripts": "^3.3.0",
+    "react-test-renderer": "^16.12.0",
+    "start-server-and-test": "^1.10.6",
+    "typescript": "^3.7.4"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/**/*.(js|jsx|ts|tsx)"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "coverageReporters": [
+      "json-summary",
+      "lcov",
+      "text"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 50,
+        "statements": 50,
+        "functions": 100,
+        "branches": 100
+      }
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test:coverage"
+    }
   }
 }

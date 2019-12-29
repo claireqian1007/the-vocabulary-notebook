@@ -32,7 +32,7 @@ jobs:
 
     - name: Unit and Integration tests
       run: |
-        yarn test
+        yarn test:coverage
         yarn test:integration
       env:
         CI: true

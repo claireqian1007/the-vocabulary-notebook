@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import NoteBookApplication from './components/application'
+
 ReactDOM.render((
-  <span>Hello World</span>
+  < NoteBookApplication / >
 ), document.getElementById('root'))
