@@ -10,7 +10,9 @@
     "lodash": "^4.17.15",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
     "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",
     "redux-saga-routines": "^3.2.2"
   },
@@ -48,6 +50,8 @@
     "@types/node": "^13.1.1",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
+    "@types/react-redux": "^7.1.5",
+    "@types/redux-logger": "^3.0.7",
     "@types/redux-saga-routines": "^3.1.0",
     "@typescript-eslint/eslint-plugin": "^2.13.0",
     "@typescript-eslint/parser": "^2.13.0",
@@ -90,10 +94,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "lines": 75,
-        "statements": 75,
-        "functions": 100,
-        "branches": 100
+        "lines": 63.04,
+        "statements": 62.75,
+        "functions": 62.5,
+        "branches": 38.46
       }
     }
   },

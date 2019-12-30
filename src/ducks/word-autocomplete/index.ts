@@ -7,7 +7,7 @@ import { getWordAutocompleteList } from '../../services'
 import { FETCH_WORD_AUTOCOMPLETE_ERROR } from '../../utils/errors'
 
 export const WordAutocompleteRoutine = createRoutine('WORD_AUTOCOMPLETE')
-
+export const namespace = 'wordAutocomplete'
 interface StateInterface {
   loading: boolean,
   suggestions: string[],
