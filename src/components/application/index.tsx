@@ -1,5 +1,6 @@
 import React from 'react'
+import { Box } from 'grommet'
 
 export default function NoteBookApplication () {
-  return (<span>Hello world</span>)
+  return (<Box>Hello world</Box>)
 }
